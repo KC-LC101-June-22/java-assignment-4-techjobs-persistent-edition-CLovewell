@@ -1,4 +1,5 @@
 -- Part 1: Test it with SQL
+-- columns of job include: id, int; employer, varchar(255); name, varchar(255); and skills, varchar(255)
 
 -- Part 2: Test it with SQL
 

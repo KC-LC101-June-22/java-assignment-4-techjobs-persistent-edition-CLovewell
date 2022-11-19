@@ -7,8 +7,8 @@ import javax.validation.constraints.Size;
 @Entity
 public class Employer extends AbstractEntity {
 
-    @NotBlank
-    @Size(max = 60)
+    @NotBlank(message = "A location is required")
+    @Size(max = 60, message = "That location name is too long")
     private String location;
 
     public Employer(@NotBlank @Size(max = 60) String location) {

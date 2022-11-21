@@ -1,6 +1,7 @@
 package org.launchcode.techjobs.persistent.models;
 
 import javax.persistence.Entity;
+import javax.persistence.OneToMany;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Size;
 import java.util.ArrayList;
@@ -13,6 +14,7 @@ public class Employer extends AbstractEntity {
     @Size(max = 60, message = "That location name is too long")
     private String location;
 
+    @OneToMany(mappedBy = "employer")
     private List<Job> jobs = new ArrayList<>();
 
     public Employer(@NotBlank @Size(max = 60) String location) {

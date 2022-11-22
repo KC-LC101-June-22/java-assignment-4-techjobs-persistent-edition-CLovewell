@@ -22,6 +22,7 @@
                     th:value="${employer.id}"></option>
         </select>
         <a th:href="@{'/employers/add'}">Add Employers</a>
+        <span th:errors="${job.employer}" class="error"></span>
     </div>
 
     <div class="form-group">
@@ -31,6 +32,7 @@
             <label th:text="${skill.name}"></label>
         </th:block>
         <a th:href="@{'/skills/add'}">Add Skills</a>
+        <span th:errors="${job.skills}" class="error"></span>
     </div>
 
     <input type="submit" value="Add Job" />

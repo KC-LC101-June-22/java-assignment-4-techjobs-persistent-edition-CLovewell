@@ -59,9 +59,9 @@ public class HomeController {
         if (optionalEmployer.isPresent()) {
             Employer employer = optionalEmployer.get();
             newJob.setEmployer(employer);
-            newJob.setSkills(skillObjs);
-            jobRepository.save(newJob);
         }
+        newJob.setSkills(skillObjs);
+        jobRepository.save(newJob);
         return "redirect:";
     }
 

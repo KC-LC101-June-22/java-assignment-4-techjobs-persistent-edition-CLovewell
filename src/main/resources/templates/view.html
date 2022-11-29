@@ -3,11 +3,12 @@
 <head th:replace="fragments :: head"></head>
 
 <body class="container  body-content">
-<h1 th:text="${'Job: ' + job.name}">Default Title</h1>
+<h1 th:unless="${job}" th:text="'Invalid Job ID: ' + ${jobId}"></h1>
+<h1 th:if="${job}" th:text="${'Job: ' + job.name}">Default Title</h1>
 
 <nav th:replace="fragments :: page-header"></nav>
 
-<div class="job-listing">
+<div th:if="${job}" class="job-listing">
     <p th:text="${'ID: ' + job.id}"></p>
     <p th:text="${'Name: ' + job.name}"></p>
     <p>

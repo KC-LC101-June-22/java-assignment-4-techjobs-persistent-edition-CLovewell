@@ -21,6 +21,7 @@ import java.util.Optional;
  */
 @Controller
 public class HomeController {
+    private boolean newJobSuccess = false;
     @Autowired
     private EmployerRepository employerRepository;
     @Autowired
@@ -31,6 +32,10 @@ public class HomeController {
     @RequestMapping("")
     public String index(Model model) {
         model.addAttribute("title", "My Jobs");
+        if (newJobSuccess) {
+            model.addAttribute("success", "Your job was successfully added");
+            newJobSuccess = false;
+        }
         return "index";
     }
 
@@ -47,10 +52,13 @@ public class HomeController {
     public String processAddJobForm(@ModelAttribute @Valid Job newJob,
                                        Errors errors, Model model,
                                     @RequestParam int employerId,
-                                    @RequestParam List<Integer> skills) {
+                                    @RequestParam(required = false) List<Integer> skills) {
 
         if (errors.hasErrors()) {
             model.addAttribute("title", "Add Job");
+            model.addAttribute("job", newJob);
+            model.addAttribute("employers", employerRepository.findAll());
+            model.addAttribute("skills", skillRepository.findAll());
             return "add";
         }
 
@@ -62,6 +70,7 @@ public class HomeController {
         }
         newJob.setSkills(skillObjs);
         jobRepository.save(newJob);
+        newJobSuccess = true;
         return "redirect:";
     }
 

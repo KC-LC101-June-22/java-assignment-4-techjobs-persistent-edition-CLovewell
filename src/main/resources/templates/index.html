@@ -8,13 +8,14 @@
 
 <div class="container body-content">
     <h2>TechJobs</h2>
+
+    <p th:text="${success}"></p>
+
     <ul>
         <li th:each="job : ${jobs}">
             <a th:href="@{'/view/' + ${job.id}}" th:text="${job.name}"></a>
         </li>
     </ul>
-
-    <p th:text="${success}"></p>
 
 </div>
 
